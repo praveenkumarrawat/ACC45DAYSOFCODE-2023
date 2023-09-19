@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+void chocolate(){
+    int x,y,z,total,buy;
+    cin>>x>>y>>z;
+    total= x*5+y*10;
+    buy=total/z;
+    cout<<buy<<endl;
+}
+int main() {
+    int t;
+    cin>>t;
+	while(t--){
+	    chocolate();
+	}
+	return 0;
+}
