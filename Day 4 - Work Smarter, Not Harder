@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+int roundoff(int a, int b)
+{
+    int c = a / b;
+    if (c * b == a)
+    {
+        return c;
+    }
+    else
+    {
+        return c + 1;
+    }
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+
+        int l, v1, v2;
+        cin >> l >> v1 >> v2;
+        int t1, t2;
+        t1 = roundoff(l, v1);
+        t2 = roundoff(l, v2);
+        // cout << t1 << " " << t2;
+        if (t2 == t1)
+        {
+            cout << -1 << endl;
+        }
+        else if (t1 > t2)
+        {
+            if (t1 - t2 == 1)
+            {
+                cout << 0 << endl;
+            }
+            else
+            {
+                cout << t1 - (t2 + 1) << endl;
+            }
+        }
+    }
+    return 0;
+}
