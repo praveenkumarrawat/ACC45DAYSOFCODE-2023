@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin>>n;
+        int car;
+        car=n/4;
+        if(car*4==n){
+            cout<<car<<endl;
+        }
+        else{
+            cout<<car+1<<endl;
+        }
+    }
+    return 0;
+}
