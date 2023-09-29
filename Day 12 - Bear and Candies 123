@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int a, b;
+        cin >> a >> b;
+        int li = 0, bo = 0, isum = 0, jsum = 0, icount = 0, jcount = 0, i, j;
+        for (i = 1; (isum < a); i = i + 2)
+        {
+            isum += i;
+            if (isum > a)
+            {
+                break;
+            }
+            else
+            {
+                icount++;
+            }
+        }
+        if (b == 1)
+        {
+            jcount == 0;
+        }
+        else
+        {
+            for (j = 2; (jsum < b); j = j + 2)
+            {
+                jsum += j;
+                if (jsum > b)
+                {
+                    break;
+                }
+                else
+                {
+                    jcount++;
+                }
+            }
+        }
+        if (icount > jcount)
+        {
+            cout << "Limak" << endl;
+        }
+        else
+        {
+            cout << "Bob" << endl;
+        }
+    }
+    return 0;
+}
