@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+int prime(int n)
+{
+    int count = 0;
+    for (int i = 2; i < n; i++)
+    {
+        if (n % i == 0)
+        {
+            count = 1;
+            break;
+        }
+    }
+    if (count == 0)
+    {
+        return n;
+    }
+    else
+    return -1;
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int m, n, p;
+        cin >> m >> n;
+        if (m == 1)
+        {
+            m = m + 1;
+        }
+        for (int i = m; i <= n; i++)
+        {
+            p = prime(i);
+            if(p!=-1){
+                cout<<p<<endl;
+            }
+        }
+    }
+    return 0;
+}
