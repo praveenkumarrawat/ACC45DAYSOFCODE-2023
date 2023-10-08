@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+int finalBalance(int W, int X, int Y, int Z) {
+    for (int i = 0; i < Z; i++) {
+        W+= X; 
+        W-= Y; 
+    }
+    return W;
+}
+int main() {
+    int T;
+    cin>>T; 
+    while (T--) {
+        int W, X, Y, Z;
+        cin >>W>>X>>Y>>Z; 
+        int result = finalBalance(W, X, Y, Z);
+        cout <<result<<endl;
+    }
+    return 0;
+}
