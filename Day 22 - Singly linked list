@@ -1,0 +1,260 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+    int data;
+    struct node *next;
+};
+struct node *start = NULL;
+void beg_insert()
+{
+    int item;
+    cout << "Enter the element : ";
+    cin >> item;
+    struct node *newnode = new node;
+    newnode->data = item;
+    if (start == NULL)
+    {
+        newnode->next = NULL;
+        start = newnode;
+    }
+    else
+    {
+        newnode->next = start;
+        start = newnode;
+    }
+    cout << "You have entered element at the begining";
+}
+void end_insert()
+{
+    int item;
+    cout << "Enter the element : ";
+    cin >> item;
+    struct node *newnode = new node;
+    newnode->data = item;
+    if (start == NULL)
+    {
+        newnode->next = NULL;
+        start = newnode;
+    }
+    else
+    {
+        struct node *currptr = start;
+        while (currptr->next != NULL)
+        {
+            currptr = currptr->next;
+        }
+        newnode->next = NULL;
+        currptr->next = newnode;
+    }
+    cout << "You have entered element at the end of list";
+}
+void pos_insert()
+{
+    int item, pos;
+    cout << "Enter the element : ";
+    cin >> item;
+    cout << "Enter the position : ";
+    cin >> pos;
+    struct node *newnode = new node;
+    newnode->data = item;
+    if (start == NULL)
+    {
+        if (pos == 1)
+        {
+            newnode->next = NULL;
+            start = newnode;
+            cout << "You have entered the element at given position";
+        }
+        else
+        {
+            cout << "\nList is Empty & Position is Invalid";
+        }
+    }
+    else
+    {
+        int len = 0;
+        struct node *currptr = start;
+        while (currptr != NULL)
+        {
+            len++;
+            currptr = currptr->next;
+        }
+        currptr = start;
+        if (pos == 1)
+        {
+            newnode->next = currptr;
+            start = newnode;
+            cout << "You have entered the element at given position";
+        }
+        else if (pos > 1 && pos <= len)
+        {
+            for (int i = 0; i < pos - 2; i++)
+            {
+                currptr = currptr->next;
+            }
+            newnode->next = currptr->next;
+            currptr->next = newnode;
+            cout << "You have entered the element at given position";
+        }
+        else if (pos == (len + 1))
+        {
+            while (currptr->next != NULL)
+            {
+                currptr = currptr->next;
+            }
+            newnode->next = NULL;
+            currptr->next = newnode;
+            cout << "You have entered the element at given position";
+        }
+        else
+        {
+            cout << "Invalid Position";
+        }
+    }
+}
+void beg_delete()
+{
+    if (start == NULL)
+    {
+        cout << "List does not exist";
+    }
+    else
+    {
+        struct node *currptr = start;
+        start = currptr->next;
+        free(currptr);
+        cout << "Element from begining has been deleted";
+    }
+}
+void pos_delete()
+{
+    struct node *currptr = start;
+    struct node *forword, *backword;
+    forword = start;
+    if (start == NULL)
+    {
+        cout << "List does not exist";
+    }
+    else
+    {
+        int pos, len = 0;
+        cout << "Enter the position of the element that will be deleted : ";
+        cin >> pos;
+        while (currptr != NULL)
+        {
+            len++;
+            currptr = currptr->next;
+        }
+        currptr = start;
+        if (pos == 1)
+        {
+            start = currptr->next;
+            free(currptr);
+            cout << "First element has been deleted";
+        }
+        else if (pos > 1 && pos < len)
+        {
+            for (int i = 0; i < pos - 1; i++)
+            {
+                backword = forword;
+                forword = forword->next;
+            }
+            backword->next = forword->next;
+            free(forword);
+        }
+        else if (pos == len)
+        {
+            while (forword->next != NULL)
+            {
+                backword = forword;
+                forword = forword->next;
+            }
+            backword->next = NULL;
+            free(forword);
+            cout << "Element from the end of list has been deleted";
+        }
+    }
+}
+void end_delete()
+{
+    struct node *forword, *backword;
+    forword = start;
+    if (start == NULL)
+    {
+        cout << "List does not exist";
+    }
+    else if (forword->next == NULL)
+    {
+        start = NULL;
+        free(forword);
+        cout << "First element of list has been deleted";
+    }
+    else
+    {
+        while (forword->next != NULL)
+        {
+            backword = forword;
+            forword = forword->next;
+        }
+        backword->next = NULL;
+        free(forword);
+        cout << "Element from the end of list has been deleted";
+    }
+}
+void display()
+{
+    if (start == NULL)
+    {
+        cout << "List is EMPTY or DOES NOT exist !!";
+    }
+    else
+    {
+        struct node *currptr = start;
+        while (currptr != NULL)
+        {
+            cout << currptr->data << " ";
+            currptr = currptr->next;
+        }
+    }
+}
+void exit();
+int main()
+{
+    int choice;
+    while (1)
+    {
+        cout << "\n\nMain menu\n1.Insertion at begining\n2.Insertion at given position\n3.Insertion at the end\n4.Deletion at begining\n5.Deletion at given position\n6.Deletion at end\n7.Display\n8.Exit\n";
+
+        cout << "\nEnter the choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            beg_insert();
+            break;
+        case 2:
+            pos_insert();
+            break;
+        case 3:
+            end_insert();
+            break;
+        case 4:
+            beg_delete();
+            break;
+        case 5:
+            pos_delete();
+            break;
+        case 6:
+            end_delete();
+            break;
+        case 7:
+            display();
+            break;
+        case 8:
+            exit(0);
+        default:
+            cout << "\nInvalid Input";
+        }
+    }
+}
