@@ -1,0 +1,289 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+    int data;
+    struct node *next;
+};
+struct node *last = NULL;
+void beg_insert()
+{
+    int item;
+    cout << "Enter the element: ";
+    cin >> item;
+    struct node *newnode = new node;
+    newnode->data = item;
+    if (last == NULL)
+    {
+        last = newnode;
+        newnode->next = last;
+        cout << "Element inserted at begining (null)";
+    }
+    else
+    {
+        newnode->next = last->next;
+        last->next = newnode;
+        cout << "Element inserted at begining";
+    }
+}
+void end_insert()
+{
+    int item;
+    cout << "Enter the element: ";
+    cin >> item;
+    struct node *newnode = new node;
+    newnode->data = item;
+    if (last == NULL)
+    {
+        last = newnode;
+        newnode->next = last;
+        cout << "Element inserted at begining (null)";
+    }
+    else
+    {
+        newnode->next = last->next;
+        last->next = newnode;
+        last = newnode;
+        cout << "Element has been inserted at the end of the list";
+    }
+}
+void pos_insert()
+{
+    int item, pos;
+    cout << "Enter the element: ";
+    cin >> item;
+    cout << "Enter the positon: ";
+    cin >> pos;
+    struct node *newnode = new node;
+    newnode->data = item;
+    if (last == NULL)
+    {
+        if (pos == 1)
+        {
+            last = newnode;
+            newnode->next = last;
+            cout << "Element inserted at position: " << pos;
+        }
+        else
+        {
+            cout << "Invalid Position";
+        }
+    }
+    else
+    {
+        int count = 0;
+        struct node *currptr;
+        currptr = last->next;
+        while (currptr != last)
+        {
+            count++;
+            currptr = currptr->next;
+        }
+        count++;
+        // cout << "Total number of nodes: " << count;
+        if (pos == 1)
+        {
+            newnode->next = last->next;
+            last->next = newnode;
+            cout << "Element inserted at position: " << pos;
+        }
+        else if (pos == count + 1)
+        {
+            newnode->next = last->next;
+            last->next = newnode;
+            last = newnode;
+            cout << "Element inserted at position: " << pos;
+        }
+        else if (pos > 1 && pos <= count)
+        {
+            currptr = last->next;
+            for (int i = 0; i < pos - 2; i++)
+            {
+                currptr = currptr->next;
+            }
+            newnode->next = currptr->next;
+            currptr->next = newnode;
+            cout << "Element inserted at position: " << pos;
+        }
+        else
+        {
+            cout << "Invalid Position";
+        }
+    }
+}
+void display()
+{
+    if (last == NULL)
+    {
+        cout << "List does not exist";
+    }
+    else
+    {
+        struct node *currptr = last->next;
+        while (currptr != last)
+        {
+            cout << currptr->data << " ";
+            currptr = currptr->next;
+        }
+        cout << currptr->data;
+    }
+}
+void beg_delete()
+{
+    struct node *currptr = NULL;
+    if (last == NULL)
+    {
+        cout << "List doesn't exist";
+    }
+    else if (last->next == last)
+    {
+        currptr = last->next;
+        last = NULL;
+        free(currptr);
+        cout << "Element deleted (null)";
+    }
+    else
+    {
+        currptr = last->next;
+        last->next = currptr->next;
+        free(currptr);
+        cout << "Element has been deleted from begining";
+    }
+}
+void end_delete()
+{
+    struct node *currptr = NULL;
+    struct node *temp;
+
+    if (last == NULL)
+    {
+        cout << "List doesn't exist";
+    }
+    else if (last->next == last)
+    {
+        currptr = last->next;
+        last = NULL;
+        free(currptr);
+        cout << "Element deleted (null)";
+    }
+    else
+    {
+        currptr = last;
+        temp = currptr;
+        while (currptr->next != last)
+        {
+            currptr = currptr->next;
+        }
+        currptr->next = last->next;
+        last = currptr;
+        free(temp);
+        cout << "ELement has been deleted from end";
+    }
+}
+void pos_delete()
+{
+    struct node *currptr, *temp;
+    if (last == NULL)
+    {
+        cout << "List does not exist";
+    }
+    else
+    {
+        int pos, count = 0;
+        cout << "Enter the position: ";
+        cin >> pos;
+        currptr = last;
+        while (currptr->next != last)
+        {
+            count++;
+            currptr = currptr->next;
+        }
+        count++;
+        // cout<<"Count: "<<count;
+        // currptr=last;
+        if (pos == 1)
+        {
+            if (last->next == last)
+            {
+                currptr = last->next;
+                last = NULL;
+                free(currptr);
+                cout << "Element has been deleted from position(null): " << pos;
+            }
+            else
+            {
+                currptr = last->next;
+                last->next = currptr->next;
+                free(currptr);
+                cout << "Element has been deleted from position: " << pos;
+            }
+        }
+        else if (pos == count)
+        {
+            currptr = last;
+            temp = currptr;
+            while (currptr->next != last)
+            {
+                currptr = currptr->next;
+            }
+            currptr->next = last->next;
+            last = currptr;
+            free(temp);
+            cout << "Element has been deleted from position: " << pos;
+        }
+        else if (pos > 1 && pos < count)
+        {
+            struct node *forward, *backward;
+            forward = last->next;
+            backward = NULL;
+            for (int i = 0; i < pos - 1; i++)
+            {
+                backward=forward;
+                forward=forward->next;
+            }
+            backward->next=forward->next;
+            free(forward);
+            cout << "Element has been deleted from position: " << pos;
+        }
+    }
+}
+void exit();
+int main()
+{
+    int choice;
+    while (1)
+    {
+        cout << "\n\nMain menu\n1.Insertion at begining\n2.Insertion at end\n3.Insert at Position\n4.Deletion at begining\n5.Deletion at end\n6.Deletion at position\n7.Display\n8.Exit\n";
+
+        cout << "\nEnter the choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            beg_insert();
+            break;
+        case 2:
+            end_insert();
+            break;
+        case 3:
+            pos_insert();
+            break;
+        case 4:
+            beg_delete();
+            break;
+        case 5:
+            end_delete();
+            break;
+        case 6:
+            pos_delete();
+            break;
+        case 7:
+            display();
+            break;
+        case 8:
+            exit(0);
+        default:
+            cout << "\nInvalid Input";
+        }
+    }
+}
