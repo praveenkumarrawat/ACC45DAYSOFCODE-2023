@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n,i,item,flag=0;
+    cout<<"Enter the no of element in array: ";
+    cin>>n;
+    int a[n];
+    cout<<"Enter the element in array: ";
+    for(i=0;i<n;i++){
+        cin>>a[i];
+    }
+    cout<<"Enter the item that want to check: ";
+    cin>>item;
+    for(i=0;i<n;i++){
+        if(a[i]==item){
+            cout<<"Item found at postion: "<<i+1;
+            flag=1;
+            break;
+        }
+    }
+    if(flag==0){
+        cout<<"Item not found";
+    }
+    return 0;
+}
