@@ -1,0 +1,77 @@
+#include <iostream>
+using namespace std;
+#define max 6
+int s[max];
+int top = -1;
+void push()
+{
+    if (top == max - 1)
+    {
+        cout << "Overflow"<<endl;
+    }
+    else
+    {
+        int item;
+        cout << "Enter the item: ";
+        cin >> item;
+        top = top + 1;
+        s[top] = item;
+        cout << "Item inserted successfully"<<endl;
+    }
+}
+void pop()
+{
+    if (top == -1)
+    {
+        cout << "Underflow"<<endl;
+    }
+    else
+    {
+        int item;
+        item = s[top];
+        top = top - 1;
+    }
+}
+void display()
+{
+    if (top == -1)
+    {
+        cout << "Stack is empty"<<endl;
+    }
+    else
+    {
+        cout << "Elements in stack : ";
+        for (int i = top; i >= 0; i--)
+        {
+            cout << s[i] << " ";
+        }
+        cout<<endl;
+    }
+}
+void exit();
+int main()
+{
+    int choice;
+    while (1)
+    {
+        cout << "\n1. Insert element in stack\n2. Delete element from stack\n3. Display stack element\n4. Exit\n";
+        cout << "Enter the choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            push();
+            break;
+        case 2:
+            pop();
+            break;
+        case 3:
+            display();
+            break;
+        case 4:
+            exit(0);
+        default:
+            cout << "Invalid option";
+        }
+    }
+}
