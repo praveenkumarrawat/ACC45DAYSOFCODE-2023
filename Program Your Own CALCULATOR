@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int x;
+    int y;
+    char z;
+    cin >> x >> y >> z;
+    if (z == '+')
+    {
+        cout << x + y << endl;
+    }
+    else if (z == '-')
+    {
+        cout << x - y << endl;
+    }
+    else if (z == '*')
+    {
+        cout << x * y << endl;
+    }
+    else if (z == '/')
+    {
+        if (x != 0)
+        {
+            cout << fixed << setprecision(7) << double(x) / y << endl;
+        }
+        else
+        {
+            cout << 0 << endl;
+        }
+    }
+    return 0;
+}
