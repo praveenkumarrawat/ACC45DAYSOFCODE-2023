@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--){
+        int l,r,m,a,b;
+        cin>>l>>r>>m;
+        a=m/l;
+        if(a*l!=m){
+            a++;
+        }
+        b=m/r;
+        cout<<a+b<<endl;
+    }
+    return 0;
+}
