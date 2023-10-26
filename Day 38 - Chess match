@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+int main() {
+	int t;
+	cin>>t;
+	while(t--){
+	    int n,a,b,t;
+	    cin>>n>>a>>b;
+	    t=2*(180+n);
+	    t=t-(a+b);
+	    cout<<t<<endl;
+	}
+	return 0;
+}
