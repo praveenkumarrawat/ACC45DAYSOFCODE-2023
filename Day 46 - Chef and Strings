@@ -1,0 +1,33 @@
+#include <iostream>
+#define ll long long
+using namespace std;
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        ll int n, skip = 0;
+        cin >> n;
+        ll int s[n];
+        for (ll int i = 0; i < n; i++)
+        {
+            cin>>s[i];
+        }
+        for (ll int i = 0; i < n-1; i++)
+        {
+            if (s[i + 1] < s[i])
+            {
+                skip += s[i] - s[i + 1] - 1;
+            }
+            else
+            {
+                skip += s[i + 1] - s[i] - 1;
+            }
+        }
+        cout << skip << endl;
+    }
+    return 0;
+}
+
