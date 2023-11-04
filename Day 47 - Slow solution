@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+void print(){
+    int maxt,maxn,sumn;
+	cin>>maxt>>maxn>>sumn;
+	int T,r;
+	T=sumn/maxn;
+	r=sumn%maxn;
+	if(T<maxt){
+	    cout<<(T*maxn*maxn+r*r)<<endl;
+	}
+	else{
+	    cout<<(maxt*maxn*maxn)<<endl;
+	}
+}
+int main() {
+	int t;
+	cin>>t;
+	while(t--){
+	    print();
+	}
+	return 0;
+}
