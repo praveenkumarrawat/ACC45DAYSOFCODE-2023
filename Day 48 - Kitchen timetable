@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n, count = 0;
+        cin >> n;
+        int a[n] = {0}, aa[n], b[n];
+        for (int i = 0; i < n; i++)
+        {
+            cin >> aa[i];
+            if (i != 0)
+            {
+                a[i] = aa[i] - aa[i - 1];
+            }
+            else
+            {
+                a[i] = aa[i];
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            cin >> b[i];
+            if (b[i] <= a[i])
+            {
+                count++;
+            }
+        }
+        cout << count << endl;
+    }
+    return 0;
+}
